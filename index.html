@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Tienda</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>Bsale Test</h1>
+        <div class="header__blocksearch">
+            <input class="header__search" type="text" name="search" id="search" placeholder="Busque un producto..."
+                list="listid">
+            <datalist id="listid"></datalist>
+            <i class="fas fa-search header__ifirst"></i>
+        </div>
+        <i class="fas fa-shopping-cart header__isecond" id="iconprincipal"></i>
+    </header>
+
+    <main class="main">
+        <div class="spinner" id="spinner"></div>
+        <div class="root" id="root">
+        </div>
+    </main>
+
+    <footer class="footer">
+        2022
+    </footer>
+
+
+    <aside class="lateral" id="lateral">
+        <label for="total">Total compra:</label>
+        <input type="text" id="total" value="0" name="total" class="lateral__input" readonly>
+        <button type="button" class="lateral__btn" id="btn">Realizar Compra</button>
+        <span class="lateral__arrow" id="closearrow">◄</span>
+        <ul id="listItems" class="listItems">
+        </ul>
+    </aside>
+
+
+    <script type="module" src="assets/js/script.js"></script>
+</body>
+
+</html>
