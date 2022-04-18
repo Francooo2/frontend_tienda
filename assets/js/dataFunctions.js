@@ -10,26 +10,21 @@ export const getMainData = async (url) => {
 
 }
 
-export const renderCards = (elements, nameArray, list, parent, imgDefault) => {
-
-    let discount
+export const renderCards = (elements, nameArray, list, parent, imgDefault, select, category) => {
 
     for (const product of elements) {
 
-        if (product.discount > 0) {
-            discount = `${product.discount}  % Desc.`
-        } else {
-            discount = ''
-        }
+        let optionsDiscount = ['', '10% Desc.', '20% Desc.', '30% Desc.', '40% Desc.', '50% Desc.', '60% Desc.']
+        let discount = optionsDiscount[Math.floor((Math.random() * ((optionsDiscount.length - 1) - 0 + 1)) + 0)] 
 
-        if (product.url_image) {
+        if (product.category.image) {
             parent.innerHTML += `<article class="card">
                 <div class="card__header">
-                    <p>${product.nameCategory.toUpperCase()}</p>
+                    <p>${product.category.name.toUpperCase()}</p>
                     <p class="card__discount">${discount}</p>   
                 </div>  
-                <img class="card__img" src=${product.url_image} alt="Producto a la venta">
-                <p class="card__text">${product.nameProduct}</p>
+                <img class="card__img" src=${product.images[0]} alt="Producto a la venta">
+                <p class="card__text">${product.title}</p>
                 <div class="card__footer">
                     <p>$${product.price}</p>
                     <input type="number" value="1" min="1" class="lateral__input">
@@ -39,11 +34,11 @@ export const renderCards = (elements, nameArray, list, parent, imgDefault) => {
         } else {
             parent.innerHTML += `<article class="card">
             <div class="card__header">
-                <p>${product.nameCategory.toUpperCase()}</p>
+                <p>${product.category.name.toUpperCase()}</p>
                 <p class="card__discount">${discount}</p>   
             </div>    
             <img class="card__img" src=${imgDefault} alt="Producto a la venta">
-            <p class="card__text">${product.nameProduct}</p>
+            <p class="card__text">${product.title}</p>
             <div class="card__footer">
                 <p>$${product.price}</p>
                 <input type="number" value="1" min="1" class="lateral__input">
@@ -53,10 +48,18 @@ export const renderCards = (elements, nameArray, list, parent, imgDefault) => {
         }
 
         let opt = document.createElement('option')
-        opt.value = product.nameProduct
+        opt.value = product.title
         list.appendChild(opt)
 
-        nameArray.push(product.nameProduct)
+        if ( category.includes(product.category.name) === false ) {
+            let opt2           = document.createElement('option')
+            opt2.value     = product.category.name
+            opt2.innerHTML = product.category.name
+            select.appendChild(opt2)
+        }
+
+        nameArray.push(product.title)
+        category.push(product.category.name)
     }
 
     return nameArray

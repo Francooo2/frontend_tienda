@@ -1,40 +1,37 @@
 import { getMainData, renderCards } from './dataFunctions.js'
-import { filterNameProduct } from './filterFunctions.js'
+import { filterNameProduct, filterCategoryProduct } from './filterFunctions.js'
 import { sale, getItemsLocalStorage, addItem, removeItem } from './generalFunctions.js'
 
-let   nameProducts  = []
-const dataList      = document.getElementById('listid')
-const parentElement = document.getElementById('root')
-const inputSearch   = document.getElementById('search')
-const imgDefault    = 'https://www.detallesmasbonitaqueninguna.com/server/Portal_0015715/img/products/no_image_xxl.jpg'
-const iconPrincipal = document.getElementById('iconprincipal')
-const lateral       = document.getElementById('lateral')
-let   listItems     = document.getElementById('listItems')
-let   total         = document.getElementById('total')
-let   makeSale      = document.getElementById('btn')
-let   closearrow    = document.getElementById('closearrow')
-let   spinner       = document.getElementById('spinner')
+let   nameProducts     = []
+let   categoryProducts = []
+const dataList         = document.getElementById('listid')
+const parentElement    = document.getElementById('root')
+const inputSearch      = document.getElementById('search')
+const imgDefault       = 'https://www.detallesmasbonitaqueninguna.com/server/Portal_0015715/img/products/no_image_xxl.jpg'
+const iconPrincipal    = document.getElementById('iconprincipal')
+const iconSecondary    = document.getElementById('iconsecondary')
+const lateral          = document.getElementById('lateral')
+let   listItems        = document.getElementById('listItems')
+let   total            = document.getElementById('total')
+let   makeSale         = document.getElementById('btn')
+let   closearrow       = document.getElementById('closearrow')
+let   spinner          = document.getElementById('spinner')
+let   select           = document.getElementById('category')
 
 window.addEventListener('load', async () => {
 
-    const data = await getMainData('http://161.35.183.49:3000/')
-
-    if ( typeof data === 'string' ) {
-        alert(data)
-        return
-    }
-
-    let hash = {}
-    let filterData = data.filter(o => hash[o.nameProduct] ? false : hash[o.nameProduct] = true)
+    const data = await getMainData('https://api.escuelajs.co/api/v1/products')
     
     spinner.classList.add('hide')
-    nameProducts = renderCards(filterData, nameProducts, dataList, parentElement, imgDefault)
+    nameProducts = renderCards(data, nameProducts, dataList, parentElement, imgDefault, select, categoryProducts)
     
     getItemsLocalStorage(listItems, total)
     
 })
 
 filterNameProduct(inputSearch, nameProducts)
+
+filterCategoryProduct(select, iconSecondary)
 
 iconPrincipal.addEventListener('click', () => {
     lateral.classList.toggle('show')

@@ -15,12 +15,15 @@
 <body>
 
     <header class="header">
-        <h1>Bsale Test</h1>
+        <h1>Tienda</h1>
         <div class="header__blocksearch">
             <input class="header__search" type="text" name="search" id="search" placeholder="Busque un producto..."
                 list="listid">
             <datalist id="listid"></datalist>
-            <i class="fas fa-search header__ifirst"></i>
+            <select class="header__select" name="category" id="category">
+                <option value="0">TODAS</option>
+            </select>
+            <i class="fas fa-search header__ifirst" id="iconsecondary"></i>
         </div>
         <i class="fas fa-shopping-cart header__isecond" id="iconprincipal"></i>
     </header>
