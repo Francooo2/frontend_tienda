@@ -20,7 +20,8 @@ let   select           = document.getElementById('category')
 
 window.addEventListener('load', async () => {
 
-    const data = await getMainData('https://api.escuelajs.co/api/v1/products')
+    // const data = await getMainData('https://api.escuelajs.co/api/v1/products')
+    const data = await getMainData('https://api.escuelajs.co/api/v1/products?offset=0&limit=40')
     
     spinner.classList.add('hide')
     nameProducts = renderCards(data, nameProducts, dataList, parentElement, imgDefault, select, categoryProducts)
